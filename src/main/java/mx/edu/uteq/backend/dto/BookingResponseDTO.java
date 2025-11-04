@@ -53,6 +53,6 @@ public class BookingResponseDTO {
     // }
     // public void setPayment(PaymentDTO payment) {
     //     this.payment = payment;
-    // } mensjae de prueba ingorar
+    // } mensaje de prueba ignorar
     
 }
