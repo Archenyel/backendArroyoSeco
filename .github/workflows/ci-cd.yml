@@ -15,6 +15,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Convertir repositorio a minúsculas
+      id: string
+      shell: bash
+      run: |
+        echo "repo=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
 
@@ -31,8 +37,8 @@ jobs:
         context: .
         push: true
         tags: |
-          ghcr.io/${{ github.repository }}:latest
-          ghcr.io/${{ github.repository }}:${{ github.sha }}
+          ghcr.io/${{ steps.string.outputs.repo }}:latest
+          ghcr.io/${{ steps.string.outputs.repo }}:${{ github.sha }}
 
   # --- Segundo Job: Despliegue ---
 
